@@ -1,0 +1,2 @@
+# ganodetect
+website kami
