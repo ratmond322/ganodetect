@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\TokenController;
+use App\Http\Controllers\DetectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,3 +70,10 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     // contoh route CRUD artikel
     Route::resource('articles', \App\Http\Controllers\Admin\ArticleController::class);
 });
+
+Route::middleware(['auth'])->group(function() {
+    Route::post('/detect', [DetectController::class, 'detect'])->name('detect');
+});
+
+Route::post('/detect', [DetectController::class, 'detect'])->name('detect');
+Route::get('/detection/{id}', [DetectController::class, 'status'])->name('detection.status');

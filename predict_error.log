@@ -1,0 +1,536 @@
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect\public
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: FAILED
+Traceback (most recent call last):
+  File "C:\laragon\www\ganodetect\predict.py", line 17, in <module>
+    from ultralytics import YOLO
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\__init__.py", line 13, in <module>
+    from ultralytics.utils import ASSETS, SETTINGS
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\utils\__init__.py", line 25, in <module>
+    import torch
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\__init__.py", line 2099, in <module>
+    _C._initExtension(_manager_path())
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\cuda\__init__.py", line 1484, in <module>
+    from .memory import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\cuda\memory.py", line 599, in <module>
+    @deprecated(
+     ^^^^^^^^^^^
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\typing_extensions.py", line 2997, in __call__
+    import asyncio.coroutines
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\asyncio\__init__.py", line 42, in <module>
+    from .windows_events import *
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 8, in <module>
+    import _overlapped
+OSError: [WinError 10106] The requested service provider could not be loaded or initialized
+
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect\public
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: FAILED
+Traceback (most recent call last):
+  File "C:\laragon\www\ganodetect\predict.py", line 17, in <module>
+    from ultralytics import YOLO
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\__init__.py", line 13, in <module>
+    from ultralytics.utils import ASSETS, SETTINGS
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\utils\__init__.py", line 25, in <module>
+    import torch
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\__init__.py", line 2099, in <module>
+    _C._initExtension(_manager_path())
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\cuda\__init__.py", line 1484, in <module>
+    from .memory import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\cuda\memory.py", line 599, in <module>
+    @deprecated(
+     ^^^^^^^^^^^
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages\typing_extensions.py", line 2997, in __call__
+    import asyncio.coroutines
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\asyncio\__init__.py", line 42, in <module>
+    from .windows_events import *
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 8, in <module>
+    import _overlapped
+OSError: [WinError 10106] The requested service provider could not be loaded or initialized
+
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
+===== NEW RUN =====
+sys.executable: C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python.exe
+cwd: C:\laragon\www\ganodetect
+sys.path:
+  C:\laragon\www\ganodetect
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311
+  C:\Users\LENOVO\AppData\Local\Programs\Python\Python311\Lib\site-packages
+IMPORT YOLO: SUCCESS
+IMPORT YOLO COMPLETED OK
