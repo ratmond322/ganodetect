@@ -21,6 +21,24 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   @stack('styles')
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <style>
+    /* Performance optimization for smooth scrolling */
+    * {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img, video {
+      content-visibility: auto;
+    }
+    [data-aos] {
+      will-change: transform, opacity;
+    }
+  </style>
 </head>
 <body class="font-inter bg-brandLight text-gray-800 antialiased min-h-screen">
 
@@ -49,10 +67,15 @@
     try{
       if(window.AOS){
         AOS.init({
-          once: false,           // animate every time it enters viewport
-          mirror: true,          // animate out while scrolling past
-          duration: 600,
-          easing: 'ease-out-cubic'
+          once: true,            // animate hanya sekali untuk performa lebih baik
+          mirror: false,         // tidak animate saat scroll balik
+          duration: 400,         // durasi lebih cepat
+          easing: 'ease-in-out',
+          offset: 50,
+          delay: 0,
+          disable: function() {
+            return window.innerWidth < 768; // disable di mobile untuk performa
+          }
         });
         // Refresh AOS on page show (e.g., bfcache) and after fonts load
         window.addEventListener('pageshow', function(){ try{ AOS.refreshHard(); }catch(e){} });

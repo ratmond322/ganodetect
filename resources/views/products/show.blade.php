@@ -5,7 +5,7 @@
 
 
 <!-- MAIN PRODUCT AREA -->
-<section class="bg-brandLight py-16">
+<section class="bg-white py-6 -mt-24 md:-mt-28">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
@@ -166,20 +166,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-brandOlive text-white py-10 mt-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between">
-    <div>
-      <p class="font-bold text-xl">SEKOLAH VOKASI IPB</p>
-      <p class="text-sm mt-1">
-        Jl. Kumbang No.14, RT.02/RW.06, Babakan, Kecamatan Bogor Tengah,<br> Kota Bogor, Jawa Barat 16128.
-      </p>
-      <p class="mt-3 text-sm">info@ganodetect.com</p>
-    </div>
-    <div class="text-sm self-end mt-6 md:mt-0">© {{ date('Y') }} Ganodetect. All rights reserved.</div>
-  </div>
-</footer>
-
 <!-- SCRIPTS -->
 <script>
   // mobile menu
@@ -255,8 +241,8 @@
 
     function setBlur(enable) {
       specCard.querySelectorAll(':scope > *:not(#popup-center)').forEach(el => {
-        el.style.transition = 'filter 160ms linear';
-        el.style.filter = enable ? 'blur(4px)' : '';
+        el.style.transition = 'opacity 160ms linear';
+        el.style.opacity = enable ? '0.6' : '1';
       });
       overlay.style.background = enable ? 'rgba(255,255,255,0.28)' : 'transparent';
       overlay.style.opacity = enable ? '0.6' : '0';

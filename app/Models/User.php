@@ -51,9 +51,9 @@ class User extends Authenticatable
 
     /**
      * Helper accessor: return a usable avatar URL.
+     * - If user has profile_photo (uploaded), return it from storage.
      * - If user has provider avatar (full URL from Google), return it.
-     * - If avatar column contains a stored filename in /images, return asset() URL.
-     * - Otherwise return a placeholder/default image.
+     * - Otherwise return a default avatar image.
      *
      * Usage in Blade: <img src="{{ $user->avatar_url }}" alt="avatar">
      *
@@ -61,6 +61,11 @@ class User extends Authenticatable
      */
     public function getAvatarUrlAttribute()
     {
+        // jika ada profile_photo yang diupload, prioritaskan ini
+        if ($this->profile_photo) {
+            return asset('storage/' . $this->profile_photo);
+        }
+
         // jika sudah full URL (Google), kembalikan langsung
         if ($this->avatar && (str_starts_with($this->avatar, 'http') || str_starts_with($this->avatar, '//'))) {
             return $this->avatar;
@@ -71,7 +76,7 @@ class User extends Authenticatable
             return asset('images/' . ltrim($this->avatar, '/'));
         }
 
-        // fallback placeholder (letakkan file public/images/avatar-placeholder.png jika mau)
-        return asset('images/avatar-placeholder.png');
+        // fallback default avatar
+        return asset('images/avatar.jpg');
     }
 }

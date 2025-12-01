@@ -7,7 +7,7 @@
 {{-- Header & mobile menu sudah disediakan oleh layouts.guest (partials.header). Hapus duplikasi di sini. --}}
 
 <!-- HERO FINAL (tanpa border, teks naik) -->
-<section class="relative w-full min-h-screen">
+<section class="relative w-full h-screen -mt-24 md:-mt-28">
   
   <!-- Background -->
   <div class="absolute inset-0 pointer-events-none">
@@ -26,10 +26,8 @@
               );">
   </div>
 
-  <!-- Spacer removed (layout header handles its own spacing) -->
-
   <!-- HERO CONTENT -->
-  <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
+  <div class="relative z-10 flex flex-col items-center justify-center h-full px-6">
 
       <h1 class="text-white font-extrabold 
                  text-5xl sm:text-6xl md:text-7xl lg:text-[96px]
@@ -136,8 +134,8 @@
 
 <!-- CTA -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-  <div class="bg-[#cbbdae] rounded-xl p-8 text-center">
-    <h3 class="text-3xl font-semibold text-gray-800">More Coming Really Soon</h3>
+  <div class="bg-gradient-to-r from-[#2d3a1f] to-[#3a4a28] rounded-xl p-8 text-center shadow-lg">
+    <h3 class="text-3xl font-semibold text-white">More Coming Really Soon</h3>
   </div>
 </section>
 

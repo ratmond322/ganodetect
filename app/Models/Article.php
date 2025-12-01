@@ -11,7 +11,9 @@ class Article extends Model
         'title', 'slug', 'author', 'image', 'excerpt', 'body', 'published_at'
     ];
 
-    protected $dates = ['published_at'];
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
 
     // helper: set slug otomatis jika kosong
     public static function booted()

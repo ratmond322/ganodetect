@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\DetectController;
+use App\Http\Controllers\DetectionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,20 @@ Route::get('/', function () {
     $articles = Article::orderBy('published_at', 'desc')->take(4)->get();
     return view('welcome', compact('articles'));
 })->name('home');
+
+// === TENTANG ===
+Route::get('/tentang', function () {
+    return view('tentang');
+})->name('tentang');
+
+Route::get('/cek-session', function () {
+    session(['test' => 'OK']);
+    return response()->json([
+        'session' => session('test'),
+        'cookies' => request()->cookies->all(),
+    ]);
+});
+
 
 //google
 Route::get('auth/google/redirect', [SocialController::class, 'redirectToGoogle'])->name('auth.google.redirect');
@@ -73,7 +88,9 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
 
 Route::middleware(['auth'])->group(function() {
     Route::post('/detect', [DetectController::class, 'detect'])->name('detect');
+    Route::get('/detection/{id}', [DetectController::class, 'status'])->name('detection.status');
 });
 
-Route::post('/detect', [DetectController::class, 'detect'])->name('detect');
-Route::get('/detection/{id}', [DetectController::class, 'status'])->name('detection.status');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('detections', DetectionController::class);
+});

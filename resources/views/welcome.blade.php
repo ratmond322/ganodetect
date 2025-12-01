@@ -31,7 +31,7 @@
             letter-spacing: -0.02em; 
             text-wrap: balance; 
             color: #fff; 
-            text-shadow: 0 10px 28px rgba(0,0,0,.35);
+            text-shadow: 0 4px 12px rgba(0,0,0,.25);
           }
           .hero-pro-accent{
             background: linear-gradient(90deg,#ffffff 0%, #fff7b2 35%, #ffe66d 70%, #fff 100%);
@@ -357,7 +357,7 @@
   .card-inner{
     padding:1.5rem;
     border-radius:1.25rem;
-    backdrop-filter:blur(16px);
+    backdrop-filter:blur(8px);
     box-shadow:0 8px 32px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.1);
     transition:transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s ease;
   }
@@ -366,8 +366,8 @@
     box-shadow:0 20px 60px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.15);
   }
   #gano-heading h2{
-    text-shadow:0 8px 24px rgba(0,0,0,.35),0 0 16px rgba(120,200,120,.12),0 0 32px rgba(255,255,255,.15);
-    filter:drop-shadow(0 0 8px rgba(152,251,152,.1));
+    text-shadow:0 4px 12px rgba(0,0,0,.25),0 0 6px rgba(120,200,120,.06),0 0 12px rgba(255,255,255,.08);
+    filter:drop-shadow(0 0 3px rgba(152,251,152,.05));
     transition:text-shadow .6s ease,filter .6s ease;
   }
   /* Disable keyframe floating - let GSAP handle all animation */

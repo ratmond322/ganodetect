@@ -35,7 +35,7 @@
       <div class="flex items-center gap-6">
         <div class="relative">
           @if(Auth::user()->profile_photo)
-            <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="Profile" class="w-24 h-24 rounded-full object-cover border-4 border-[#7c8d34]">
+            <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}?t={{ Auth::user()->updated_at?->timestamp ?? time() }}" alt="Profile" class="w-24 h-24 rounded-full object-cover border-4 border-[#7c8d34]">
           @else
             <div class="w-24 h-24 rounded-full bg-gradient-to-br from-[#7c8d34] to-[#6a7a2a] flex items-center justify-center border-4 border-[#7c8d34]">
               <span class="text-3xl font-bold text-white">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>

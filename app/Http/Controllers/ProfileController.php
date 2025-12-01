@@ -58,6 +58,10 @@ class ProfileController extends Controller
         
         $user->profile_photo = $path;
         $user->save();
+        
+        // Force refresh user in session
+        $user->refresh();
+        Auth::setUser($user);
 
         return Redirect::route('profile.edit')->with('status', 'Foto profile berhasil diupdate!');
     }

@@ -2,176 +2,250 @@
 
 namespace App\Jobs;
 
+use App\Models\DroneDetection;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Bus\Dispatchable;
-use App\Models\DroneDetection;
-use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Process\Process;
 
 class ProcessDroneImage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $detectionId;
-    public $userId;
+    public int $detectionId;
+    public int $tries = 3;
 
-    public function __construct(int $detectionId, $userId = null)
+    public function __construct(int $detectionId)
     {
         $this->detectionId = $detectionId;
-        $this->userId = $userId;
     }
 
-    public function handle()
+    public function handle(): void
     {
-        $d = DroneDetection::find($this->detectionId);
-        if (!$d) {
-            Log::error("ProcessDroneImage: detection not found {$this->detectionId}");
+        $detection = DroneDetection::find($this->detectionId);
+        if (!$detection) {
+            Log::warning("ProcessDroneImage: detection {$this->detectionId} not found.");
             return;
         }
 
-        $inputPath = storage_path('app/' . $d->image_path);
-        if (!file_exists($inputPath)) {
-            // fallback to storage/app/public/<path>
-            $inputPathPublic = storage_path('app/public/' . $d->image_path);
-            if (file_exists($inputPathPublic)) {
-                $inputPath = $inputPathPublic;
-            }
+        $imagePath = $detection->image_path ?? null;
+        if (!$imagePath) {
+            Log::error("ProcessDroneImage: detection {$detection->id} has no image_path.");
+            return;
         }
 
-        $outDir = storage_path('app/public/annotated');
-        if (!is_dir($outDir)) @mkdir($outDir, 0755, true);
-        $outFilename = 'annotated_' . pathinfo($inputPath, PATHINFO_FILENAME) . '.jpg';
-        $outputPath = $outDir . DIRECTORY_SEPARATOR . $outFilename;
+        if (!Storage::disk('public')->exists($imagePath)) {
+            Log::error("ProcessDroneImage: image missing storage/app/public/{$imagePath}");
+            return;
+        }
 
-        $python = env('PYTHON_BIN', 'python');
+        $fullImagePath = Storage::disk('public')->path($imagePath);
+
+        // prepare output folders & paths
+        $predsDir = storage_path('app/public/preds');
+        $annotatedDir = storage_path('app/public/annotated');
+        if (!file_exists($predsDir)) mkdir($predsDir, 0755, true);
+        if (!file_exists($annotatedDir)) mkdir($annotatedDir, 0755, true);
+
+        $outJson = $predsDir . DIRECTORY_SEPARATOR . 'detection_' . $detection->id . '.json';
+        $outAnnotated = $annotatedDir . DIRECTORY_SEPARATOR . 'annotated_' . $detection->id . '.jpg';
+
+        // python binary and script
+        $python = env('PYTHON_PATH', 'python');
         $script = base_path('predict.py');
-        $modelPath = base_path(env('MODEL_PATH', 'models/best.pt'));
+        $modelPath = base_path('models/best.pt');
 
-        $cmd = [$python, $script, $inputPath, $outputPath, $modelPath];
+        $cmd = [$python, $script, $fullImagePath, $outAnnotated, $modelPath];
 
-        Log::info("[ProcessDroneImage-debug] cmd: " . implode(' ', $cmd));
-
-        $process = new Process($cmd);
-        $process->setTimeout(300);
+        Log::info("ProcessDroneImage: running python for detection {$detection->id}", ['cmd' => implode(' ', $cmd)]);
 
         try {
+            $process = new Process($cmd);
+            $process->setTimeout(600);
             $process->run();
 
-            Log::info("[ProcessDroneImage-debug] exitCode: " . $process->getExitCode());
-            Log::info("[ProcessDroneImage-debug] raw_stdout: " . $process->getOutput());
-            Log::info("[ProcessDroneImage-debug] raw_stderr: " . $process->getErrorOutput());
+            $stderr = trim($process->getErrorOutput());
+            if ($stderr) {
+                Log::warning("ProcessDroneImage: python stderr for id {$detection->id}: " . $stderr);
+            }
 
             if (!$process->isSuccessful()) {
-                Log::error("[ProcessDroneImage-debug] process not successful");
+                $errOut = trim($process->getErrorOutput() ?: $process->getOutput());
+                Log::error("ProcessDroneImage: python process failed for id {$detection->id}: {$errOut}");
                 return;
             }
 
-            // --- Robust JSON extraction: find JSON object that starts with {"ok"
-            $rawStdout = $process->getOutput();
-            $rawStderr = $process->getErrorOutput();
+            $stdout = trim($process->getOutput());
+            Log::info("ProcessDroneImage: python stdout for id {$detection->id}: " . (strlen($stdout) > 300 ? substr($stdout,0,300) . '...' : $stdout));
 
-            $jsonString = null;
-
-            // prefer explicit marker
-            $marker = '{"ok"';
-            $pos = strpos($rawStdout, $marker);
-            if ($pos !== false) {
-                $jsonString = substr($rawStdout, $pos);
-            } else {
-                // try stderr
-                $pos2 = strpos($rawStderr, $marker);
-                if ($pos2 !== false) {
-                    $jsonString = substr($rawStderr, $pos2);
+            // --- Robust parse of JSON contained in stdout ---
+            $parsed = null;
+            if (!empty($stdout)) {
+                // try decode directly first (if pure json)
+                $try = json_decode($stdout, true);
+                if (is_array($try)) {
+                    $parsed = $try;
                 } else {
-                    // fallback: regex attempt to capture last {...} block
-                    if (preg_match('/\{.*"ok".*\}/s', $rawStdout, $m)) {
-                        $jsonString = $m[0];
-                    } elseif (preg_match('/\{.*"ok".*\}/s', $rawStderr, $m2)) {
-                        $jsonString = $m2[0];
+                    // attempt to extract last JSON object/array from stdout using regex
+                    // This will capture the last brace-enclosed block (works for object or array)
+                    if (preg_match_all('/(\{.*\}|\[.*\])\s*$/s', $stdout, $matches)) {
+                        $candidate = end($matches[1]);
+                        $try2 = json_decode($candidate, true);
+                        if (is_array($try2)) {
+                            $parsed = $try2;
+                        } else {
+                            // fallback: find any {...} in stdout and try decode the last one
+                            if (preg_match_all('/\{.*?\}/s', $stdout, $allObjMatches)) {
+                                $last = end($allObjMatches[0]);
+                                $try3 = json_decode($last, true);
+                                if (is_array($try3)) $parsed = $try3;
+                            }
+                        }
                     } else {
-                        // last resort: try last '{' to end (previous approach)
-                        $pos3 = strrpos($rawStdout, '{');
-                        if ($pos3 !== false) $jsonString = substr($rawStdout, $pos3);
+                        // last fallback: try to find first "{" and last "}" and substr
+                        $first = strpos($stdout, '{');
+                        $last = strrpos($stdout, '}');
+                        if ($first !== false && $last !== false && $last > $first) {
+                            $sub = substr($stdout, $first, $last - $first + 1);
+                            $try4 = json_decode($sub, true);
+                            if (is_array($try4)) $parsed = $try4;
+                        }
                     }
                 }
             }
 
-            \Log::info("[ProcessDroneImage-debug] raw_stdout: " . $rawStdout);
-            \Log::info("[ProcessDroneImage-debug] raw_stderr: " . $rawStderr);
-            \Log::info("[ProcessDroneImage-debug] extracted_json: " . ($jsonString ?? 'NULL'));
-
-            $data = null;
-            if ($jsonString !== null) {
-                $data = json_decode($jsonString, true);
-            }
-
-            if (json_last_error() !== JSON_ERROR_NONE || $data === null) {
-                \Log::error("[ProcessDroneImage-debug] json decode failed: " . json_last_error_msg());
-                \Log::error("[ProcessDroneImage-debug] raw stdout: " . $rawStdout);
-                \Log::error("[ProcessDroneImage-debug] raw stderr: " . $rawStderr);
-                $data = [];
-            }
-
-
-            $predictions = $data['predictions'] ?? null;
-            $infected = $data['infected'] ?? 0;
-            $annotated_abs = $data['annotated_path'] ?? null;
-
-            // copy annotated file into storage/public/annotated if path exists
-            if ($annotated_abs && file_exists($annotated_abs)) {
-                if (!file_exists(dirname($outputPath))) @mkdir(dirname($outputPath), 0755, true);
-                copy($annotated_abs, $outputPath);
-                Log::info("[ProcessDroneImage-debug] copied annotated from $annotated_abs to $outputPath");
-            } elseif (file_exists($outputPath)) {
-                Log::info("[ProcessDroneImage-debug] outputPath exists: $outputPath");
-            } else {
-                Log::warning("[ProcessDroneImage-debug] no annotated output found at $annotated_abs or $outputPath");
-            }
-
-            // === Normalize predictions: ensure array ===
-            if (is_array($predictions)) {
-                $predArr = $predictions;
-            } elseif ($predictions === null) {
-                $predArr = [];
-            } else {
-                $maybe = @json_decode($predictions, true);
-                $predArr = is_array($maybe) ? $maybe : [];
-            }
-
-            // === Normalize infected flag ===
-            $infectedVal = $infected ?? 0;
-            $infectedFlag = 0;
-            if ($infectedVal === true || $infectedVal === 1 || $infectedVal === "1" || (is_numeric($infectedVal) && intval($infectedVal) > 0)) {
-                $infectedFlag = 1;
-            } elseif (count($predArr) > 0) {
-                $infectedFlag = 1;
-            }
-
-            // Save to model: predictions as JSON string (or null)
-            try {
-                $d->predictions = count($predArr) > 0 ? json_encode($predArr, JSON_UNESCAPED_UNICODE) : null;
-                $d->infected = $infectedFlag;
-
-                // store the relative path under storage/public only if the annotated file exists
-                if (file_exists($outputPath)) {
-                    $d->annotated_path = 'annotated/' . $outFilename;
+            // If python script wrote a fallback json file, read it
+            if ((!is_array($parsed) || empty($parsed)) && file_exists($outJson)) {
+                try {
+                    $txt = file_get_contents($outJson);
+                    $parsed = json_decode($txt, true) ?: $parsed;
+                    Log::info("ProcessDroneImage: read predictions json file for id {$detection->id}");
+                } catch (\Throwable $e) {
+                    Log::warning("ProcessDroneImage: failed reading fallback json file for id {$detection->id}: " . $e->getMessage());
                 }
-
-                $d->save();
-
-                Log::info("[ProcessDroneImage-debug] saved detection " . $d->id
-                    . " (pred_count=" . count($predArr)
-                    . ", infected=" . $d->infected
-                    . ", annotated_path=" . ($d->annotated_path ?? 'NULL') . ")");
-            } catch (\Exception $e) {
-                Log::error("[ProcessDroneImage-debug] save failed: " . $e->getMessage());
             }
-        } catch (\Exception $e) {
-            Log::error("[ProcessDroneImage-debug] exception: " . $e->getMessage() . "\n" . $e->getTraceAsString());
+
+            // if still null make it empty array structure
+            if (!is_array($parsed)) $parsed = [];
+
+            // get predictions array from parsed structure (supports a few shapes)
+            $preds = [];
+            if (isset($parsed['predictions']) && is_array($parsed['predictions'])) {
+                $preds = $parsed['predictions'];
+            } elseif (isset($parsed['preds']) && is_array($parsed['preds'])) {
+                $preds = $parsed['preds'];
+            } elseif (is_array($parsed) && array_keys($parsed) === range(0, count($parsed)-1)) {
+                // parsed is an array of preds already
+                $preds = $parsed;
+            }
+
+            // if preds is string try decode
+            if (is_string($preds)) {
+                $tmp = json_decode($preds, true);
+                if (is_array($tmp)) $preds = $tmp;
+            }
+            if (!is_array($preds)) $preds = [];
+
+            // Save predictions to DB (store as JSON string)
+            $detection->predictions = json_encode($preds);
+
+            // compute totals and infected
+            $total = count($preds);
+            $infected = 0;
+            foreach ($preds as $p) {
+                $label = strtolower((string)($p['label'] ?? ''));
+                $conf = isset($p['confidence']) ? floatval($p['confidence']) : (isset($p['conf']) ? floatval($p['conf']) : 0.0);
+                if (strpos($label, 'ganoderma') !== false || $conf >= 0.5) $infected++;
+            }
+
+            $detection->total_detected = $total;
+            $detection->infected_count = $infected;
+            $detection->healthy_count = max(0, $total - $infected);
+
+            // Handle annotated image path: favor the $outAnnotated we've defined,
+            // otherwise copy file from script-output absolute path if provided.
+            if (file_exists($outAnnotated)) {
+                $detection->annotated_path = 'annotated/' . basename($outAnnotated);
+            } else {
+                $annotPathFromScript = $parsed['annotated_path'] ?? ($parsed['annotated'] ?? null);
+                if (!empty($annotPathFromScript) && file_exists($annotPathFromScript)) {
+                    $destRel = 'annotated/' . basename($annotPathFromScript);
+                    $destFull = storage_path('app/public/' . $destRel);
+                    if (!file_exists(dirname($destFull))) mkdir(dirname($destFull), 0755, true);
+                    if (@copy($annotPathFromScript, $destFull)) {
+                        $detection->annotated_path = $destRel;
+                        Log::info("ProcessDroneImage: copied annotated image from script for id {$detection->id}");
+                    } else {
+                        Log::warning("ProcessDroneImage: failed to copy annotated image from script for id {$detection->id}");
+                    }
+                } else {
+                    Log::info("ProcessDroneImage: no annotated image generated for id {$detection->id}");
+                }
+            }
+
+            // Write fallback JSON next to annotated file so next attempt can read it
+            try {
+                $fallback = [
+                    'ok' => true,
+                    'predictions' => $preds,
+                    'infected' => ($infected > 0) ? 1 : 0,
+                    'annotated_path' => file_exists($outAnnotated) ? $outAnnotated : ($parsed['annotated_path'] ?? null),
+                ];
+                file_put_contents($outJson, json_encode($fallback, JSON_PRETTY_PRINT));
+            } catch (\Throwable $e) {
+                Log::warning("ProcessDroneImage: failed writing fallback json for id {$detection->id}: " . $e->getMessage());
+            }
+
+            // fallback: if block not found at upload time, try parse from original filename
+            if (empty($detection->block) && !empty($imagePath)) {
+                $base = basename($imagePath);
+                // original filename might be encoded in the stored name? if not, we try filename from parsed stdout
+                $block = null;
+                // try to extract from parsed structure if python script returned original_filename
+                if (!empty($parsed['original_filename'])) {
+                    $block = (new \App\Http\Controllers\DetectController)->extractBlockFromFilename($parsed['original_filename']);
+                }
+                if (!$block) {
+                    // try from stored name (may not contain info if randomized), skip if random
+                    $block = (new \App\Http\Controllers\DetectController)->extractBlockFromFilename($base);
+                }
+                if ($block) $detection->block = $block;
+            }
+
+            $detection->save();
+
+            // emit event (non-blocking)
+            try {
+                event(new \App\Events\DetectionCreated($detection));
+            } catch (\Throwable $e) {
+                Log::warning("ProcessDroneImage: DetectionCreated event failed for {$detection->id}: " . $e->getMessage());
+            }
+
+            Log::info("ProcessDroneImage: finished processing detection {$detection->id} (total={$total}, infected={$infected})");
+
+        } catch (\Throwable $e) {
+            Log::error("ProcessDroneImage exception for id {$this->detectionId}: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    public function failed(\Throwable $exception): void
+    {
+        Log::error("ProcessDroneImage failed for id {$this->detectionId}: " . $exception->getMessage());
+        try {
+            $d = DroneDetection::find($this->detectionId);
+            if ($d) {
+                $d->predictions = json_encode([]);
+                $d->total_detected = 0;
+                $d->infected_count = 0;
+                $d->save();
+            }
+        } catch (\Throwable $e) {
+            Log::warning("ProcessDroneImage failed() handler also errored: " . $e->getMessage());
         }
     }
 }
