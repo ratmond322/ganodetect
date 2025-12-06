@@ -38,6 +38,7 @@ yarn-error.log
 # -----------------------------------------------------------------------
 # Python environment (jangan upload ke Railway)
 .venv/
+venv
 __pycache__/
 *.pyc
 
