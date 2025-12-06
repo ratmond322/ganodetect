@@ -1,19 +1,67 @@
-/.phpunit.cache
-/node_modules
-/public/build
-/public/hot
-/public/storage
-/storage/*.key
+# -----------------------------------------------------------------------
+# A. File dan Direktori Laravel Penting
+# -----------------------------------------------------------------------
 /vendor
+/node_modules
 .env
 .env.backup
-.env.production
+.env.*.local  # Untuk environment lokal
+.env.testing
+.env.production # Anda sudah memilikinya, pastikan tidak ter-commit
+
+# Direktori Cache dan Log
+/bootstrap/cache/*.php
+/storage/*.key
+/storage/app/public/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*.log
+
+# Asset Build (Vite/Mix)
+/public/build
+/public/hot
+
+# Testing
+/.phpunit.cache
 .phpunit.result.cache
+
+# Development/Deployment Tools
 Homestead.json
 Homestead.yaml
 auth.json
 npm-debug.log
 yarn-error.log
+
+# -----------------------------------------------------------------------
+# B. Environment Python / Machine Learning (Custom)
+# -----------------------------------------------------------------------
+# Python environment (jangan upload ke Railway)
+.venv/
+__pycache__/
+*.pyc
+
+# ML model (YOLO file besar)
+*.pt
+*.pth
+*.onnx
+
+# Native python binaries (besar & bikin error di Railway)
+*.pyd
+*.dll
+*.so
+
+# Log tambahan (opsional)
+# *.log # Dihapus/di-comment karena sudah dicover oleh /storage/logs/*.log
+
+# -----------------------------------------------------------------------
+# C. IDE dan OS Files
+# -----------------------------------------------------------------------
+# IDE
 /.fleet
 /.idea
 /.vscode
+
+# Local development junk
+.DS_Store
+Thumbs.db
